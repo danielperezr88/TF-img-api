@@ -5,12 +5,12 @@ from schemas import schemas
 import re
 import sys
 
-import TFworker
+import TFWorker
 
 
 def abstractGet(self):
     args = ArgHandler(self.retrieveArgs())
-    return getattr(sys.modules['OFWorker.OFworker'], re.sub(r'^(.*)Handler', r'\1Main', self.__class__.__name__))(
+    return getattr(sys.modules['TFWorker.TFWorker'], re.sub(r'^(.*)Handler', r'\1Main', self.__class__.__name__))(
         args)  # alignMain(args)
 
 
