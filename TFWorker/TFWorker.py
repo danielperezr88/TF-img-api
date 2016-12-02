@@ -6,7 +6,7 @@ import tensorflow as tf
 def InferMain(args):
 
     img_url = urllib.urlopen(args.image)
-    image_data = bytearray(img_url.read())
+    image_data = img_url.read()
 
     lbl_file_path = os.path.join('..', 'retrained_labels.txt')
     label_lines = [line.rstrip() for line in tf.gfile.GFile(lbl_file_path)]
@@ -26,7 +26,7 @@ def InferMain(args):
         # Sort to show labels of first prediction in order of confidence
         top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
 
-        return dict([(label_lines[i], predictions[0][i]) for i in top_k])
+        return dict([(label_lines[i], "%.5f"%predictions[0][i]) for i in top_k])
 
 if __name__ == '__main__':
     commonParser = argparse.ArgumentParser()
