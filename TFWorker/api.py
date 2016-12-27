@@ -36,6 +36,13 @@ class BaseHandler(APIHandler):
         return {n: self.body.get(n, v.get('default', None)) for (n, v) in \
                 self.schema['properties'].items()}
 
+    def set_default_headers(self):
+        self.set_header("Access-Control-Allow-Origin", '*')
+        self.set_header('Access-Control-Allow-Methods', 'POST')
+        self.set_header('Access-Control-Max-Age', 1000)
+        self.set_header('Access-Control-Allow-Headers', '*')
+        self.set_header('Content-type', 'application/json')
+
 
 class InferHandler(BaseHandler):
     """Handler for Align Function"""

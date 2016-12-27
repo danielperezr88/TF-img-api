@@ -12,7 +12,7 @@ CACHE_BUCKET = 'cache-files-hf'
 if __name__ == '__main__':
 
     client = storage.Client()
-    for filename in ['retrained_graph.pb', 'retrained_labels.txt']:
+    for filename in ['retrained_graph.pb', 'retrained_labels.txt', 'breakhis_retrained_graph.pb', 'breakhis_retrained_labels.txt']:
         blob = client.get_bucket(CACHE_BUCKET).get_blob(filename)
         fp = open(filename, 'wb')
         blob.download_to_file(fp)
