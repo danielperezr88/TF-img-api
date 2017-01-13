@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     for filename in ['retrained_graph.pb', 'retrained_labels.txt', 'breakhis_retrained_graph.pb',
                      'breakhis_retrained_labels.txt']:
-        filepath = path.join(path.basename(path.dirname(path.realpath(__file__))), filename)
+        filepath = path.join(path.dirname(path.realpath(__file__)), filename)
         if not path.exists(filepath):
             client = storage.Client()
             blob = client.get_bucket(lookup_bucket(client, CACHE_BUCKET)).get_blob(filename)
