@@ -1,6 +1,6 @@
 from tornado_json.requesthandlers import APIHandler
 from tornado_json import schema
-from schemas import schemas
+from .schemas import schemas
 
 import re
 import sys

@@ -1,18 +1,22 @@
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib import urlopen
+
+from os import path
 import argparse
-import urllib
-import os
 import tensorflow as tf
 
 def InferMain(args):
 
-    img_url = urllib.urlopen(args.image)
+    img_url = urlopen(args.image)
     image_data = img_url.read()
 
     lbl_file_path = 'retrained_labels.txt' if args.model == 'flowers' else 'breakhis_retrained_labels.txt'
-    label_lines = [line.rstrip() for line in tf.gfile.GFile(lbl_file_path)]
+    label_lines = [line.rstrip() for line in tf.gfile.GFile(path.join(path.abspath(path.dirname(path.realpath(__file__))), '..', lbl_file_path))]
 
     graph_file_path = 'retrained_graph.pb' if args.model == 'flowers' else 'breakhis_retrained_graph.pb'
-    with tf.gfile.FastGFile(graph_file_path, 'rb') as f:
+    with tf.gfile.FastGFile(path.join(path.abspath(path.dirname(path.realpath(__file__))), '..', graph_file_path), 'rb') as f:
         graph_def = tf.GraphDef()
         graph_def.ParseFromString(f.read())
         _ = tf.import_graph_def(graph_def, name='')
