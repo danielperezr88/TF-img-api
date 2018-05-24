@@ -1,7 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
-retrained_labels.txt
-retrained_graph.pb
 *.pyc
 *.pid
 *.log
