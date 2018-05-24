@@ -1,4 +1,4 @@
-from os import getpid#, path
+from os import getpid, environ#, path
 import inspect
 import logging
 import tornado.ioloop
@@ -49,6 +49,6 @@ if __name__ == '__main__':
 
     application = Application(routes=routes, settings={})
 
-    application.listen(88)
+    application.listen(int(environ.get('PORT', 88)))
 
     tornado.ioloop.IOLoop.instance().start()
